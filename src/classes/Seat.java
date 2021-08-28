@@ -6,11 +6,18 @@ public abstract class Seat {
     
     private Passenger passenger;
     private String location;
+    private int number;
     protected String[] locationOptions;
 
     public Seat(Passenger passenger, String location) {
         this.passenger = passenger;
         this.location = location;
+    }
+
+    public Seat(Passenger passenger, String location, int number) {
+        this.passenger = passenger;
+        this.location = location;
+        this.number = number;
     }
 
     public Passenger getPassenger() {
@@ -29,6 +36,14 @@ public abstract class Seat {
         this.location = location;
     }
 
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
     public String[] getLocationOptions() {
         return locationOptions;
     }
@@ -39,8 +54,8 @@ public abstract class Seat {
 
     @Override
     public String toString() {
-        return "Seat [location=" + location + ", locationOptions=" + Arrays.toString(locationOptions) + ", passenger="
-                + passenger + "]";
+        return "Seat [location=" + location + ", locationOptions=" + Arrays.toString(locationOptions) + ", number="
+                + number + ", passenger=" + passenger + "]";
     }
 
 }
