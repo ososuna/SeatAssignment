@@ -41,7 +41,7 @@ public class Menu {
                     cancelSeat();
                     break;
                 case 5:
-                    System.out.println("Percentage");
+                    occupationPercentage();
                     break;
                 default:
                     System.out.println("See you!\n");
@@ -281,6 +281,32 @@ public class Menu {
         } else {
             System.out.println("\nThere are not passengers with this SSN");
         }
-    } 
+    }
+    
+    public static void occupationPercentage() {
+        
+        Double percentage;
+        int passengerCounter = 0;
+
+        for (int i = 0; i < ExecutiveSeat.rows; i++) {
+            for (int j = 0; j < ExecutiveSeat.cols; j++) {
+                if ( airplane.executiveSeats[i][j].getPassenger() != null ) {
+                    passengerCounter++;
+                }
+            }
+        }
+
+        for (int i = 0; i < EconomicSeat.rows; i++) {
+            for (int j = 0; j < EconomicSeat.cols; j++) {
+                if ( airplane.economicSeats[i][j].getPassenger() != null ) {
+                    passengerCounter++;
+                }
+            }
+        }
+
+        percentage = Double.valueOf(passengerCounter)/50*100;
+        System.out.println("\nThe occupation percentage is: " + percentage + "%");
+
+    }
 
 }
