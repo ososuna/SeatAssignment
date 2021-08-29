@@ -38,7 +38,7 @@ public class Menu {
                     seatInfo();
                     break;
                 case 4:
-                    System.out.println("Cancel");
+                    cancelSeat();
                     break;
                 case 5:
                     System.out.println("Percentage");
@@ -244,5 +244,43 @@ public class Menu {
         }
 
     }
+
+    public static void cancelSeat() {
+        
+        String ssn;
+        boolean found = false;
+
+        scanner.nextLine();
+        System.out.print("Enter SSN: ");
+        ssn = scanner.nextLine();
+
+        for (int i = 0; i < ExecutiveSeat.rows; i++) {
+            for (int j = 0; j < ExecutiveSeat.cols; j++) {
+                if ( airplane.executiveSeats[i][j].getPassenger() != null ) {
+                    if ( airplane.executiveSeats[i][j].getPassenger().getSsn().equals(ssn) ) {
+                        airplane.executiveSeats[i][j].setPassenger(null);
+                        found = true;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < EconomicSeat.rows; i++) {
+            for (int j = 0; j < EconomicSeat.cols; j++) {
+                if ( airplane.economicSeats[i][j].getPassenger() != null ) {
+                    if ( airplane.economicSeats[i][j].getPassenger().getSsn().equals(ssn) ) {
+                        airplane.economicSeats[i][j].setPassenger(null);
+                        found = true;
+                    }
+                }
+            }
+        }
+
+        if (found) {
+            System.out.println("\nThe seats have been canceled successfully");
+        } else {
+            System.out.println("\nThere are not passengers with this SSN");
+        }
+    } 
 
 }
