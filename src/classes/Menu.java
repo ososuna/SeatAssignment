@@ -22,7 +22,8 @@ public class Menu {
             System.out.println("3. Seat information");
             System.out.println("4. Cancel seat");
             System.out.println("5. Occupation percentage");
-            System.out.println("6. Get out");
+            System.out.println("6. Passenger data");
+            System.out.println("7. Get out");
             System.out.print("Enter an option: ");
             option = scanner.nextInt();
             System.out.println();
@@ -43,11 +44,14 @@ public class Menu {
                 case 5:
                     occupationPercentage();
                     break;
+                case 6:
+                    passengerData();
+                    break;
                 default:
                     System.out.println("See you!\n");
                     return;
             }
-        } while (option>= 1 && option <= 5);
+        } while (option>= 1 && option <= 6);
 
     }
 
@@ -307,6 +311,54 @@ public class Menu {
         percentage = Double.valueOf(passengerCounter)/50*100;
         System.out.println("\nThe occupation percentage is: " + percentage + "%");
 
+    }
+
+    public static void passengerData() {
+        
+        String ssn;
+        boolean found = false;
+
+        scanner.nextLine();
+        System.out.print("Enter SSN: ");
+        ssn = scanner.nextLine();
+
+        for (int i = 0; i < ExecutiveSeat.rows; i++) {
+            for (int j = 0; j < ExecutiveSeat.cols; j++) {
+                if ( airplane.executiveSeats[i][j].getPassenger() != null ) {
+                    Passenger passenger = airplane.executiveSeats[i][j].getPassenger();
+                    if ( passenger.getSsn().equals(ssn) ) {
+                        System.out.println(
+                            "\nName: " + passenger.getName() +
+                            "\nSeat number: " + airplane.executiveSeats[i][j].getNumber() +
+                            "\nSeat class: Executive" +
+                            "\nLocation: " + airplane.executiveSeats[i][j].getLocation()
+                        );
+                        found = true;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < EconomicSeat.rows; i++) {
+            for (int j = 0; j < EconomicSeat.cols; j++) {
+                if ( airplane.economicSeats[i][j].getPassenger() != null ) {
+                    Passenger passenger = airplane.economicSeats[i][j].getPassenger();
+                    if ( passenger.getSsn().equals(ssn) ) {
+                        System.out.println(
+                            "\nName: " + passenger.getName() +
+                            "\nSeat number: " + airplane.economicSeats[i][j].getNumber() +
+                            "\nSeat class: Economic" +
+                            "\nLocation: " + airplane.economicSeats[i][j].getLocation()
+                        );
+                        found = true;
+                    }
+                }
+            }
+        }
+
+        if (!found) {
+            System.out.println("\nThere is not a passanger with this SSN");
+        }
     }
 
 }

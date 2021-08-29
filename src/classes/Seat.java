@@ -1,7 +1,5 @@
 package classes;
 
-import java.util.Arrays;
-
 public abstract class Seat {
     
     private Passenger passenger;
