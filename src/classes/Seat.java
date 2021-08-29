@@ -9,11 +9,6 @@ public abstract class Seat {
     private int number;
     protected String[] locationOptions;
 
-    public Seat(Passenger passenger, String location) {
-        this.passenger = passenger;
-        this.location = location;
-    }
-
     public Seat(Passenger passenger, String location, int number) {
         this.passenger = passenger;
         this.location = location;
