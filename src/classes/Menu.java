@@ -18,8 +18,11 @@ public class Menu {
         do {
             System.out.println("\nMENU");
             System.out.println("1. Request seat");
-            System.out.println("2. Check seats availability");
-            System.out.println("3. Get out");
+            System.out.println("2. Seats availability");
+            System.out.println("3. Seat information");
+            System.out.println("4. Cancel seat");
+            System.out.println("5. Occupation percentage");
+            System.out.println("6. Get out");
             System.out.print("Enter an option: ");
             option = scanner.nextInt();
             System.out.println();
@@ -31,11 +34,20 @@ public class Menu {
                 case 2:
                     airplane.printSeats();
                     break;
+                case 3:
+                    seatInfo();
+                    break;
+                case 4:
+                    System.out.println("Cancel");
+                    break;
+                case 5:
+                    System.out.println("Percentage");
+                    break;
                 default:
                     System.out.println("See you!\n");
                     return;
             }
-        } while (option>= 1 && option <= 2);
+        } while (option>= 1 && option <= 5);
 
     }
 
@@ -183,6 +195,52 @@ public class Menu {
                 System.out.println("Check the availability and look for another seat");
             }
 
+        }
+
+    }
+
+    public static void seatInfo() {
+        
+        int seatNumber;
+        
+        System.out.print("Enter seat number: ");
+        seatNumber = scanner.nextInt();
+
+        if (seatNumber < 1 || seatNumber > 50) {
+            System.out.println("\nInvalid seat number");
+            return;
+        }
+
+        for (int i = 0; i < ExecutiveSeat.rows; i++) {
+            for (int j = 0; j < ExecutiveSeat.cols; j++) {
+                if ( airplane.executiveSeats[i][j].getNumber() == seatNumber ) {
+                    if (airplane.executiveSeats[i][j].getPassenger() != null) {
+                        System.out.println();
+                        System.out.println(airplane.executiveSeats[i][j]);
+                    } else {
+                        System.out.println();
+                        System.out.println("Location: " + airplane.executiveSeats[i][j].getLocation() +
+                                           "\nPassenger: " + "None");
+                    }
+                    return;
+                }
+            }
+        }
+
+        for (int i = 0; i < EconomicSeat.rows; i++) {
+            for (int j = 0; j < EconomicSeat.cols; j++) {
+                if ( airplane.economicSeats[i][j].getNumber() == seatNumber ) {
+                    if (airplane.economicSeats[i][j].getPassenger() != null) {
+                        System.out.println();
+                        System.out.println(airplane.economicSeats[i][j]);
+                    } else {
+                        System.out.println();
+                        System.out.println("Location: " + airplane.economicSeats[i][j].getLocation() +
+                                           "\n\nPassenger: " + "None");
+                    }
+                    return;
+                }
+            }
         }
 
     }

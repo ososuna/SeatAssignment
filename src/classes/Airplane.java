@@ -132,7 +132,7 @@ public class Airplane {
                         // System.out.print("[ " + economicSeats[i][j].getLocation() + " ] ");
                     }
                 } else {
-                    if (j==ExecutiveSeat.cols/2) {
+                    if (j==EconomicSeat.cols/2) {
                         System.out.print("  [ xx ] ");
                     } else {
                         System.out.print("[ xx ] ");

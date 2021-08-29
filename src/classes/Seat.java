@@ -49,8 +49,7 @@ public abstract class Seat {
 
     @Override
     public String toString() {
-        return "Seat [location=" + location + ", locationOptions=" + Arrays.toString(locationOptions) + ", number="
-                + number + ", passenger=" + passenger + "]";
+        return "Location: " + location + "\nPassenger\n" + passenger.toString();
     }
 
 }
