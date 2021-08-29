@@ -65,6 +65,31 @@ public class Menu {
         name = scanner.nextLine();
         System.out.print("Enter SSN: ");
         ssn = scanner.nextLine();
+
+        for (int i = 0; i < ExecutiveSeat.rows; i++) {
+            for (int j = 0; j < ExecutiveSeat.cols; j++) {
+                if ( airplane.executiveSeats[i][j].getPassenger() != null ) {
+                    if ( airplane.executiveSeats[i][j].getPassenger().getSsn().equals(ssn) ) {
+                        System.out.println("\nThe SSN is already registered");
+                        System.out.println("Cancel your seat to request another one");
+                        return;
+                    }
+                }
+            }
+        }
+
+        for (int i = 0; i < EconomicSeat.rows; i++) {
+            for (int j = 0; j < EconomicSeat.cols; j++) {
+                if ( airplane.economicSeats[i][j].getPassenger() != null ) {
+                    if ( airplane.economicSeats[i][j].getPassenger().getSsn().equals(ssn) ) {
+                        System.out.println("\nThe SSN is already registered");
+                        System.out.println("Cancel your seat to request another one");
+                        return;
+                    }
+                }
+            }
+        }
+
         
         passenger = new Passenger(name, ssn);
                 
